@@ -1,5 +1,5 @@
-#include <stdio.h>
+#include "lib_base.h"
 
 void lib_func() {
-  printf("Test pass!\n");
+  lib_base_func();
 }

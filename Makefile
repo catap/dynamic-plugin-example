@@ -18,7 +18,7 @@ END_GROUP := -Wl,-noall_load
 endif
 
 clean:
-	$(RM) -f *.o lib.a main plugin
+	$(RM) -f *.o *.a main plugin
 
 plugin: plugin.o
 	$(CC) $(CFLAGS) -Wl,-undefined -Wl,dynamic_lookup -shared -o $@ $< 
@@ -26,8 +26,11 @@ plugin: plugin.o
 lib.a: lib.o
 	$(AR) crsT lib.a lib.o
 
-main: main.o lib.a
-	$(CC) $(CFLAGS) -o $@ main.o $(DYN_EXPORT) $(LIBS) $(START_GROUP) lib.a $(END_GROUP)
+lib_base.a: lib_base.o
+	$(AR) crsT lib_base.a lib_base.o
+	
+main: main.o lib.a lib_base.a
+	$(CC) $(CFLAGS) -o $@ main.o $(DYN_EXPORT) $(LIBS) $(START_GROUP) lib.a lib_base.a $(END_GROUP)
 	
 .c.o:
 	$(CC) -c $(CFLAGS) -o $@ $<
