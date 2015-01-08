@@ -1,5 +1,6 @@
 namespace Dynamic {
-  namespace Lib {
-    void func();
-  }
+  class Lib {
+  public:
+    static void func();
+  };
 }
