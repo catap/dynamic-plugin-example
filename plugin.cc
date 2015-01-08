@@ -1,5 +1,5 @@
 #include "lib.h"
 
-void plugin_func() {
+extern "C" void plugin_func() {
   lib_func();
 }
