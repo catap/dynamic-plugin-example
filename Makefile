@@ -1,5 +1,4 @@
 
-CFLAGS := -fPIC
 OS := $(shell uname)
 
 all: plugin main
@@ -29,4 +28,4 @@ main: main.o lib.a lib_base.a
 	$(CXX) $(CFLAGS) -o $@ main.o $(DYN_EXPORT) $(LIBS) $(START_GROUP) lib.a lib_base.a $(END_GROUP)
 	
 .cc.o:
-	$(CXX) -c $(CFLAGS) -o $@ $<
+	$(CXX) -c -fPIC $(CFLAGS) -o $@ $<
