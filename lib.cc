@@ -1,5 +1,6 @@
+#include "lib.h"
 #include "lib_base.h"
 
-void lib_func() {
-  lib_base_func();
+void Dynamic::Lib::func() {
+  Dynamic::Lib_Base::func();
 }

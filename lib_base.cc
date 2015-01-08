@@ -1,5 +1,7 @@
 #include <stdio.h>
 
-void lib_base_func() {
+#include "lib_base.h"
+
+void Dynamic::Lib_Base::func() {
   printf("Test pass!\n");
 }

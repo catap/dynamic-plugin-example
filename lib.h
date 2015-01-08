@@ -1,1 +1,5 @@
-void lib_func();
+namespace Dynamic {
+  namespace Lib {
+    void func();
+  }
+}
