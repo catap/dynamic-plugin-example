@@ -21,16 +21,13 @@ clean:
 	$(RM) -f *.o *.a main plugin
 
 plugin: plugin.o
-	$(CC) $(CFLAGS) -Wl,-undefined -Wl,dynamic_lookup -shared -o $@ $< 
+	$(CXX) $(CFLAGS) -Wl,-undefined -Wl,dynamic_lookup -shared -o $@ $< 
 
-lib.a: lib.o
-	$(AR) crsT lib.a lib.o
+.o.a:
+	$(AR) crsT $@ $<
 
-lib_base.a: lib_base.o
-	$(AR) crsT lib_base.a lib_base.o
-	
 main: main.o lib.a lib_base.a
-	$(CC) $(CFLAGS) -o $@ main.o $(DYN_EXPORT) $(LIBS) $(START_GROUP) lib.a lib_base.a $(END_GROUP)
+	$(CXX) $(CFLAGS) -o $@ main.o $(DYN_EXPORT) $(LIBS) $(START_GROUP) lib.a lib_base.a $(END_GROUP)
 	
-.c.o:
-	$(CC) -c $(CFLAGS) -o $@ $<
+.cc.o:
+	$(CXX) -c $(CFLAGS) -o $@ $<
