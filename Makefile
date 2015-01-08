@@ -14,7 +14,6 @@ endif
 ifeq ($(OS), Darwin)
 DYN_EXPORT := -Wl,-export_dynamic 
 START_GROUP := -Wl,-all_load
-END_GROUP := -Wl,-noall_load
 endif
 
 clean:
