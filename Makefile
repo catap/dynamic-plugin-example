@@ -1,5 +1,6 @@
 
 OS := $(shell uname)
+LIBTOOL ?= libtool
 
 all: plugin main
 
@@ -22,7 +23,7 @@ plugin: plugin.o
 	$(CXX) $(CFLAGS) -Wl,-undefined -Wl,dynamic_lookup -shared -o $@ $< 
 
 .o.a:
-	$(AR) crsT $@ $<
+	$(LIBTOOL) -static -o $@ $<
 
 main: main.o lib.a lib_base.a
 	$(CXX) $(CFLAGS) -o $@ main.o $(DYN_EXPORT) $(LIBS) $(START_GROUP) lib.a lib_base.a $(END_GROUP)
